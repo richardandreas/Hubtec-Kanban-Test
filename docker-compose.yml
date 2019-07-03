@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  client:
+    container_name: kanban-client
+    hostname: kanban-client
+    build:
+      context: ./kanban-client
+      dockerfile: Dockerfile
+    command: npm run start
+    ports:
+      - "8000:3000"
+    volumes:
+      - ./kanban-client:/kanban-client
+
+  server:
+    container_name: kanban-server
+    hostname: kanban-server
+    depends_on:
+      - "postgres"
+    build:
+      context: ./kanban-server
+      dockerfile: Dockerfile
+    command: bash -c "bundle check || bundle install && bundle exec puma -C config/puma.rb"
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./kanban-server:/kanban-server
+      - gems:/gems
+      
+  postgres:
+    image: 'postgres:9.5'
+    ports:
+      - "5433:5432"
+    volumes:
+      - 'postgres:/var/lib/postgresql/data'
+
+volumes:
+  postgres:
+  gems:
