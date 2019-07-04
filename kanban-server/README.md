@@ -22,3 +22,6 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+## Execute rails command:
+docker-compose run --rm server bundle exec rails ...
