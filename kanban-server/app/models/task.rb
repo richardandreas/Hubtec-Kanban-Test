@@ -1,25 +1,40 @@
 class Task < ApplicationRecord
   belongs_to :user
 
+  before_validation :set_initial_status, on: :create
+
   validates :title, :description, :status, :end_date, presence: true
   validates :status, :numericality => { :only_integer => true, :greater_than_or_equal_to => 0 }
   validate :date_is_valid
 
+  default_scope -> { where(deleted_at: nil) }
+
   def soft_delete
-    if self.deleted_at != nil
-      update(deleted_at: Time.current)
+    if self.deleted_at == nil
+      update(deleted_at: Date.today)
     end
+  end
+
+  def self.user_tasks(user_id)
+    {
+      new: Task.where("user_id = ? AND status = ?", user_id, 0),
+      progress: Task.where("user_id = ? AND status = ?", user_id, 1),
+      done: Task.where("user_id = ? AND status = ?", user_id, 2),
+      cancelled: Task.where("user_id = ? AND status = ?", user_id, 3),
+    }
   end
 
   private
 
-  def self.users_tasks(user_id)
-    Task.where("user_id = ?", user_id)
+  def date_is_valid
+    if end_date.present? && end_date < Date.today
+      errors.add(:end_date, "is outdated!")
+    end
   end
 
-  def date_is_valid
-    if end_date < Date.today
-      errors.add(:end_date, "is outdated!")
+  def set_initial_status
+    if self.status == nil
+      self.status = 0
     end
   end
 end
