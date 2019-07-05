@@ -22,3 +22,18 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+## Run rails command:
+docker-compose run --rm server bundle exec rails ...
+
+## Run rake command:
+docker-compose run --rm server bundle exec rake
+
+## Run rspec command:
+docker-compose run --rm server bundle exec rspec
+
+### Run rspec task model tests:
+docker-compose run --rm server bundle exec rspec spec/models/task_spec.rb
+
+### Run rspec task request tests:
+docker-compose run --rm server bundle exec rspec spec/request/task_request_spec.rb

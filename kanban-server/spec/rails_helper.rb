@@ -1,12 +1,12 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
-require 'spec_helper'
-ENV['RAILS_ENV'] ||= 'test'
-require File.expand_path('../../config/environment', __FILE__)
+require "spec_helper"
+ENV["RAILS_ENV"] ||= "test"
+require File.expand_path("../../config/environment", __FILE__)
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
-require 'rspec/rails'
-require 'ffaker'
-require 'pry'
+require "rspec/rails"
+require "ffaker"
+require "pry"
 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
@@ -59,10 +59,25 @@ RSpec.configure do |config|
   #   end
   # end
 
+  config.include FactoryBot::Syntax::Methods
+  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+
   config.before(:each) {
     FFaker::Random.reset!
     FFaker::UniqueUtils.clear
   }
+
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
+  end
+
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
   # `post` in specs under `spec/controllers`.
