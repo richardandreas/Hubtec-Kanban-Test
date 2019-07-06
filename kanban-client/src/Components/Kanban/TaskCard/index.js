@@ -9,11 +9,9 @@ export default class TaskCard extends Component {
 
     render() {
         return (
-            <a>
-                <div className="card">
-                    <h1 className="title">{this.state.title}</h1>
-                    <p>{this.state.end_date}</p>
-                </div>
+            <a className="box">
+                <h4 className="title">{this.state.title}</h4>
+                <p>{this.state.end_date}</p>
             </a>
         )
     }
