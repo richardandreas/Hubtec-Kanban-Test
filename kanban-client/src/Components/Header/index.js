@@ -30,7 +30,7 @@ export default class Header extends Component {
                         ? <div className="navbar-end">
                             <div className="navbar-item">
                                 <button
-                                    className="button is-info is-outlined is-medium"
+                                    className="button is-info is-outlined is-inverted is-medium"
                                     onClick={this.signOut}
                                 >Sign out</button>
                             </div>
