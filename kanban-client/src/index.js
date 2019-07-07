@@ -4,7 +4,8 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './index.css';
 import 'bulma/css/bulma.css';
 import App from './App';
-import Login from './Login'
+import Login from './Login';
+import Logon from './Logon';
 import * as serviceWorker from './serviceWorker';
 
 
@@ -13,6 +14,8 @@ ReactDOM.render(
         <Switch>
             <Route path="/" exact={true} component={App} />
             <Route path="/login" exact={true} component={Login} />
+            <Route path="/logon" exact={true} component={Logon} />
+
         </Switch>
     </BrowserRouter>
     , document.getElementById('root')

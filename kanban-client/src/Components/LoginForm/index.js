@@ -11,10 +11,11 @@ export default class LoginForm extends Component {
         this.state = {
             email: "",
             password: "",
-            authError: false,
+            serverError: false,
             loginLoading: false,
             registerLoading: false,
-            redirect: false
+            redirect: false,
+            redirectLogon: false
         }
     }
 
@@ -38,13 +39,20 @@ export default class LoginForm extends Component {
             this.setState({ redirect: true });
         }).catch(err => {
             console.log(err);
-            this.setState({ authError: true, loginLoading: false });
+            this.setState({ serverError: true, loginLoading: false });
         });
+    }
+
+    logon = () => {
+        this.state.redirectLogon = true;
     }
 
     render() {
         if (this.state.redirect) {
             return (<Redirect to="/" />);
+        }
+        if (this.state.redirectLogon) {
+            return (<Redirect to="/logon" />);
         }
 
         return (
@@ -56,7 +64,7 @@ export default class LoginForm extends Component {
                     <label className="label">Email</label>
                     <div className="control">
                         <input
-                            className={`input ${this.state.authError ? "is-danger" : ""}`}
+                            className={`input ${this.state.serverError ? "is-danger" : ""}`}
                             value={this.state.email}
                             onChange={this.updateEmail}
                             type="email"
@@ -68,12 +76,12 @@ export default class LoginForm extends Component {
                     <label className="label ">Password</label>
                     <div className="control">
                         <input
-                            className={`input ${this.state.authError ? "is-danger" : ""}`}
+                            className={`input ${this.state.serverError ? "is-danger" : ""}`}
                             value={this.state.password}
                             onChange={this.updatePassword}
                             type="password"></input>
                     </div>
-                    {this.state.authError
+                    {this.state.serverError
                         ? <p className="help is-danger">User or password invalid!</p>
                         : null
                     }
@@ -90,6 +98,7 @@ export default class LoginForm extends Component {
 
                     <div className="control buttons">
                         <button
+                            onClick={this.logon}
                             className={`button is-info is-fullwidth is-outlined ${this.state.registerLoading ? "is-loading" : ""}`}
                         >Sign up</button>
                     </div>
