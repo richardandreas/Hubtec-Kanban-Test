@@ -10,15 +10,15 @@ export default class Kanban extends Component {
     state = {
         columns: [
             { key: "new", title: "New" },
-            { key: "progress", title: "In Progress" },
-            { key: "done", title: "Done" },
-            { key: "cancelled", title: "Cancelled" }
+            { key: "progress", title: "Ongoing" },
+            { key: "paused", title: "Paused" },
+            { key: "done", title: "Done" }
         ],
         tasks: {
             new: [],
             progress: [],
-            done: [],
-            cancelled: []
+            paused: [],
+            done: []
         },
         loading: true,
         redirect: false,
@@ -37,8 +37,8 @@ export default class Kanban extends Component {
                 tasks: {
                     new: [],
                     progress: [],
-                    done: [],
-                    cancelled: []
+                    paused: [],
+                    done: []
                 }, modalCreate: false, modalTask: null
             });
             this.setState({ tasks: res.data, loading: false });
@@ -103,8 +103,8 @@ export default class Kanban extends Component {
                 tasks: {
                     new: [],
                     progress: [],
-                    done: [],
-                    cancelled: []
+                    paused: [],
+                    done: []
                 }
             });
             this.setState({ tasks: updatedTasks });

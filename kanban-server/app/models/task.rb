@@ -19,8 +19,8 @@ class Task < ApplicationRecord
     {
       new: Task.where("user_id = ? AND status = ?", user_id, 0).order(:end_date),
       progress: Task.where("user_id = ? AND status = ?", user_id, 1).order(:end_date),
-      done: Task.where("user_id = ? AND status = ?", user_id, 2).order(:end_date),
-      cancelled: Task.where("user_id = ? AND status = ?", user_id, 3).order(:end_date),
+      paused: Task.where("user_id = ? AND status = ?", user_id, 2).order(:end_date),
+      done: Task.where("user_id = ? AND status = ?", user_id, 3).order(:end_date),
     }
   end
 
