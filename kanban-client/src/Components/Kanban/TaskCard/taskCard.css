@@ -1,0 +1,4 @@
+.is-single-line {
+    white-space: nowrap;
+    overflow: hidden;
+}
