@@ -20,7 +20,7 @@ export default class Modal extends Component {
             titleError: false,
             descriptionError: false,
             dateError: false,
-            authError: false,
+            serverError: false,
 
             submitLoading: false,
             deleteLoading: false
@@ -80,7 +80,7 @@ export default class Modal extends Component {
                 this.props.onClose(true);
             }).catch(err => {
                 console.log(err);
-                this.setState({ authError: true, submitLoading: false });
+                this.setState({ serverError: true, submitLoading: false });
             });
         } else {
             API.put(`/api/v1/task/${task.id}`, task, { headers: helpers.getHeaders() }).then(res => {
@@ -88,7 +88,7 @@ export default class Modal extends Component {
                 this.props.onClose(true);
             }).catch(err => {
                 console.log(err);
-                this.setState({ authError: true, submitLoading: false });
+                this.setState({ serverError: true, submitLoading: false });
             });
         }
     }
@@ -101,7 +101,7 @@ export default class Modal extends Component {
             this.props.onClose(true);
         }).catch(err => {
             console.log(err);
-            this.setState({ authError: true, deleteLoading: false });
+            this.setState({ serverError: true, deleteLoading: false });
         });
     }
 
@@ -115,7 +115,7 @@ export default class Modal extends Component {
                         <button onClick={this.closeModal} className="delete" aria-label="close"></button>
                     </header>
                     <section className="modal-card-body">
-                        {this.state.authError
+                        {this.state.serverError
                             ? <div className="notification is-danger">Oops! Could not submit to server.</div>
                             : ""
                         }
