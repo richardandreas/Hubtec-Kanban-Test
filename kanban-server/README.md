@@ -27,10 +27,10 @@ Things you may want to cover:
 docker-compose run --rm server bundle exec rails ...
 
 ## Run rake command:
-docker-compose run --rm server bundle exec rake
+docker-compose run --rm server bundle exec rake ...
 
 ## Run rspec command:
-docker-compose run --rm server bundle exec rspec
+docker-compose run --rm server bundle exec rspec ...
 
 ### Run rspec task model tests:
 docker-compose run --rm server bundle exec rspec spec/models/task_spec.rb
