@@ -1,0 +1,15 @@
+.navbar {
+    background-color: #FFFFFF22;
+}
+
+.logo {
+    margin-left: 0.75rem;
+}
+
+.navbar-end {
+    margin-left: auto;
+}
+
+.is-flex {
+    display: flex !important;
+}

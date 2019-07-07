@@ -6,7 +6,7 @@
 .arrow {
     display: none;
     position: absolute;
-    margin-top: -90px;
+    margin-top: -70px;
 }
 
 .arrow.active {
@@ -20,11 +20,11 @@
 
 .arrow-left {
     transform: scale(-1);
-    left: -10px;
+    left: -0.75rem;
 }
 
 .arrow-right {
-    right: -10px;
+    right: -0.75rem;
 }
 
 .arrow-container {
