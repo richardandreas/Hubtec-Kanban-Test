@@ -29,7 +29,7 @@ export default class TaskCard extends Component {
     render() {
         return (
             <div className={navigator.maxTouchPoints ? "" : "smarthover"}>
-                <a className="box" onClick={this.onSelect}>
+                <a className="box has-less-margin" onClick={this.onSelect}>
                     <h4 className="title is-marginless is-single-line">{this.state.title}</h4>
                     <p className="is-marginless">{`Until: ${new Date(this.state.end_date).toLocaleDateString()}`}</p>
                     <p className="is-marginless has-text-grey is-single-line">{this.state.description}</p>

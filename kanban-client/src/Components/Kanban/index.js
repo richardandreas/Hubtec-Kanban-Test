@@ -130,7 +130,7 @@ export default class Kanban extends Component {
                     {this.state.columns.map((column, index) =>
 
                         <div className="column is-half-tablet is-one-quarter-desktop" key={index}>
-                            <div className="box content">
+                            <div className="box content has-less-margin">
                                 <div className={`top-bar has-background-${column.color}`}></div>
                                 <div className="has-text-centered">
                                     <h4>{column.title}</h4>
