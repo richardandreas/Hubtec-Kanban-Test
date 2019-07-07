@@ -77,6 +77,40 @@ export default class Kanban extends Component {
         }
     }
 
+    updateTaskStatus = (task, newStatus) => {
+        console.log(task)
+        const updatedTasks = this.state.tasks;
+        const oldTaskKey = this.state.columns[task.status].key
+
+        updatedTasks[oldTaskKey] = updatedTasks[oldTaskKey].filter(obj => {
+            return obj.id !== task.id;
+        });
+        console.log(this.state.tasks)
+        console.log(newStatus)
+        const newTaskKey = this.state.columns[newStatus].key
+        task.status = newStatus;
+        updatedTasks[newTaskKey].push(task)
+
+        API.put(`/api/v1/task/${task.id}`, task, { headers: helpers.getHeaders() }).then(res => {
+            helpers.setHeaders(res.headers);
+            this.props.onClose(true);
+        }).catch(err => {
+            console.log(err);
+        });
+
+        setTimeout(() => {
+            this.setState({
+                tasks: {
+                    new: [],
+                    progress: [],
+                    done: [],
+                    cancelled: []
+                }
+            });
+            this.setState({ tasks: updatedTasks });
+        }, 50);
+    }
+
     render() {
         if (this.state.redirect) {
             return (<Redirect to="/login" />);
@@ -102,11 +136,9 @@ export default class Kanban extends Component {
                                 {this.state.tasks[column.key].map((task, index) =>
 
                                     <TaskCard
-                                        id={task.id}
-                                        title={task.title}
-                                        description={task.description}
-                                        end_date={task.end_date}
+                                        task={task}
                                         onSelect={this.onTaskSelect}
+                                        onStatusChange={this.updateTaskStatus}
                                         key={index}
                                     />
 

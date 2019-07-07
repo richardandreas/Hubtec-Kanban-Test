@@ -50,7 +50,6 @@ export default class Modal extends Component {
 
     closeModal = () => {
         this.props.onClose(false);
-        console.log("no")
     }
 
     submit = () => {

@@ -2,3 +2,40 @@
     white-space: nowrap;
     overflow: hidden;
 }
+
+.arrow {
+    display: none;
+    position: absolute;
+    margin-top: -90px;
+}
+
+.arrow.active {
+    display: inline;
+}
+
+.arrow.active:hover {
+    filter: brightness(90%);
+    cursor: pointer;
+}
+
+.arrow-left {
+    transform: scale(-1);
+    left: -10px;
+}
+
+.arrow-right {
+    right: -10px;
+}
+
+.arrow-container {
+    position: relative;
+    width: 100%;
+}
+
+.smarthover .arrow-container {
+    visibility: hidden;
+}
+
+.smarthover:hover .arrow-container {
+    visibility: visible;
+}
