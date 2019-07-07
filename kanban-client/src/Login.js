@@ -14,7 +14,6 @@ export default function Login() {
 						</section>
 						<div className="modal-card"></div>
 					</div>
-					<img src="https://bulma.io/images/made-with-bulma--white.png" alt="Made with Bulma" width="128" height="24"></img>
 				</div>
 			</div>
 		</React.Fragment>

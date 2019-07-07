@@ -44,7 +44,7 @@ export default class LoginForm extends Component {
     }
 
     logon = () => {
-        this.state.redirectLogon = true;
+        this.setState({ redirectLogon: true });
     }
 
     render() {
