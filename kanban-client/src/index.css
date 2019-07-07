@@ -10,3 +10,8 @@ body {
 .has-no-background {
   background-color: #FFF0 !important;
 }
+
+.box {
+  padding: 0.75rem !important;
+  margin-bottom: 0.75rem !important;
+}

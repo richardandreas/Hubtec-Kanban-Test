@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import './Kanban.css'
 import TaskCard from './TaskCard';
 import Modal from './Modal';
 import API from '../../api';
@@ -9,10 +10,10 @@ import * as helpers from '../../helpers';
 export default class Kanban extends Component {
     state = {
         columns: [
-            { key: "new", title: "New" },
-            { key: "progress", title: "Ongoing" },
-            { key: "paused", title: "Paused" },
-            { key: "done", title: "Done" }
+            { key: "new", title: "New", color: "info" },
+            { key: "progress", title: "Ongoing", color: "warning"  },
+            { key: "paused", title: "Paused", color: "danger"  },
+            { key: "done", title: "Done", color: "success"  }
         ],
         tasks: {
             new: [],
@@ -120,7 +121,7 @@ export default class Kanban extends Component {
             <React.Fragment>
                 <div className="buttons">
                     <button
-                        className="button is-info is-rounded is-outlined is-inverted"
+                        className="button is-link is-rounded is-outlined is-inverted"
                         onClick={this.openModalCreate}
                     >Add new task</button>
                 </div>
@@ -130,6 +131,7 @@ export default class Kanban extends Component {
 
                         <div className="column is-half-tablet is-one-quarter-desktop" key={index}>
                             <div className="box content">
+                                <div className={`top-bar has-background-${column.color}`}></div>
                                 <div className="has-text-centered">
                                     <h4>{column.title}</h4>
                                 </div>

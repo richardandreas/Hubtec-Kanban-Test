@@ -1,0 +1,12 @@
+.box {
+    overflow: hidden;
+}
+
+.top-bar {
+    height: 6px;
+    margin-bottom: 0.75rem;
+    margin-top: -0.75rem;
+    margin-left: -1rem;
+    right: 5px;
+    width: 120%;
+}
