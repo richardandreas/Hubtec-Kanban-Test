@@ -1,6 +1,6 @@
 # Hubtec-Kanban-Test
 
-This project is part of the selection process for a programmer job. It consists of a Full Stack application with Rails running the Back- and React running the Front-end. The app runs a Kanban-style software where users can create an account and manage various tasks. You can visit this app on heroku here: https://guarded-depths-62877.herokuapp.com/login.
+This project is part of the selection process for a programmer job. It consists of a Full Stack application with Rails running the Back- and React running the Front-end. The app runs a Kanban-style software where users can create an account and manage various tasks. You can visit this app on heroku here: https://richards-kanban-app.herokuapp.com/login.
 
 ## Getting Started
 
